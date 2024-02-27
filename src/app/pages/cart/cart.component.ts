@@ -5,6 +5,7 @@ import { Cart, CartItem } from '../../models/cart.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -35,19 +36,19 @@ export class CartComponent {
     quantity: 2,
     id: 2,
     },
-  ]}
+  ]};
 
   dataSource : Array<CartItem> = [];
   displayedColumns: Array<string> = ['product', 'name', 'price', 'quantity', 'total', 'action'];
+  
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.dataSource = this.cart.items;
   }
 
   getTotal(items: Array<CartItem>): number {
-    return items
-          .map((item) => item.price * item.quantity)
-          .reduce((prev, curr) => prev + curr, 0);
+    return this.cartService.getTotal(items);
   }
 
 
