@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { Cart, CartItem } from '../../models/cart.model';
 import { CartComponent } from '../../pages/cart/cart.component';
 import { CartService } from '../../services/cart.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatBadge, MatMenuModule, CommonModule],
+  imports: [MatToolbarModule, MatIconModule, MatBadge, MatMenuModule, CommonModule, RouterModule],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {

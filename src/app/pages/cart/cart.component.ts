@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,6 +17,8 @@ import { CartService } from '../../services/cart.service';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    RouterModule,
+
   ],
   templateUrl: './cart.component.html',
 })
@@ -55,5 +58,15 @@ export class CartComponent {
     return this.cartService.getTotal(items);
   }
 
+  onClearCart(): void {
+    this.cartService.clearCart();
+  }
 
+  onRemoveItem(id: number): void {
+    this.cartService.removeItem(id);
+  }
+
+  onChangeQuantity(id: number, quantity: number): void {
+    this.cartService.changeQuantity(id, quantity);
+  }
 }

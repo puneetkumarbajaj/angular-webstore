@@ -36,4 +36,24 @@ export class CartService {
     this.cart.next({items: []});
     this._snackBar.open('Cart cleared', 'Close', {duration: 2000});
   }
+
+  removeItem(id: number): void {
+    const items = [...this.cart.value.items];
+    const index = items.findIndex((i) => i.id === id);
+    items.splice(index, 1);
+    this.cart.next({items});
+    this._snackBar.open('Product removed from cart', 'Close', {duration: 2000});
+  }
+
+  changeQuantity(id: number, quantity: number): void {
+    const items = [...this.cart.value.items];
+    const item = items.find((i) => i.id === id);
+    if (item) {
+      item.quantity = item.quantity + quantity;
+      this.cart.next({items});
+    }
+    if (item && item.quantity <= 0) {
+      this.removeItem(id);
+    }
+  }
 }
