@@ -9,6 +9,7 @@ export const routes: Routes = [
     },
     {
         path: 'cart',
+        title: 'Cart',
         component: CartComponent,
     },
     {
